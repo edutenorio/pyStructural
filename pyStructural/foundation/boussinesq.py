@@ -108,11 +108,11 @@ def boussinesq_udl_rect_corner(udl, depth, width_x, width_z, n=6):
         return udl / 4
 
     # Take the quarter of the circle up to the smaller width, as there is an analytical solution
-    radius = min([width_x, width_z])
+    radius = width_x if width_x < width_z else width_z
     sigma1 = 0.25 * udl * (1 - (1 + (radius / depth) ** 2) ** -1.5)
 
     # Calculate the integral of the remainder (rectangle - circle)
-    width, length = sorted([width_x, width_z])
+    width, length = (width_x, width_z) if width_x < width_z else (width_z, width_x)
 
     # Using pre-calculated Gauss-Legendre points for n = 6 (default) and n = 10 to speed up the process
     if n == 6:
