@@ -1,6 +1,3 @@
-
----
-
 # pyStructural
 
 **pyStructural** is a collection of simple yet powerful functions designed to assist structural engineers in their daily activities. This library aims to streamline common calculations and tasks, making it easier for engineers to focus on design and analysis.
