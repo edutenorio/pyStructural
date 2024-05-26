@@ -1,4 +1,3 @@
-Certainly! Here's a draft for your README file for the `pyStructural` project on GitHub:
 
 ---
 
@@ -25,18 +24,23 @@ Here's a quick example of how to use pyStructural:
 
 ```python
 import pyStructural as ps
+import numpy as np
 
 # Example: Calculate reactions for a simply supported beam with a point load
 span = 6.0  # in meters
 load = 10.0  # in kN
 
-# Vertical stress at 5m deep for a 15kN point load located 1.5m away (horizontal distance) 
-sigma_y = ps.foundation.boussinesq_pnt(15, 5, 1.5)
+# Soil Vertical stress at 5m deep for a 15kN point load located 1.5m away (horizontal distance) 
+sigma_y = ps.foundation.boussinesq_pnt(15, 1.5, 5)
 
-# Vertical stress at 12m deep for a 150 tonne structure on a rectangular foundation 12m x 10m
+# Soil vertical stress at 12m deep for a 150 tonne structure on a rectangular foundation 12m x 10m
 bx, bz = 12, 10
 q = 150 * 9.81 / (bx * bz)
-sigma_y = ps.foundation.boussinesq_udl_rect_cent(q, 12, bx, bz)
+sigma_y = ps.foundation.boussinesq_udl_rect_cent(q, bx, bz, 12)
+
+# Soil vertical stress for several depth points
+y = np.arange(0, 20.001, 0.01)
+sigma_y_array = ps.foundation.boussinesq_udl_rect_cent(q, bx, bz, y)
 ```
 
 ## Documentation
